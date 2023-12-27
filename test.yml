@@ -1,0 +1,6 @@
+- hosts: 10.8.0.25
+
+  tasks:
+    - name: restart service
+    - command: 'systemctl'
+    - service: name=network state=restarted

@@ -1,0 +1,9 @@
+# Using alternate directory locations:
+  - hosts: al
+    remote_user: root
+    gather_facts: no  #不收集对应主机的信息，这样运行会快点。
+    tasks:
+     - name: ssh-copy
+       authorized_key: remote_user=root key="{{ lookup('file', '/root/.ssh/id_rsa.pub') }}"
+       tags:
+         - sshkey

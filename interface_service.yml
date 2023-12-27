@@ -1,0 +1,12 @@
+---
+- hosts: 10.8.0.25
+
+  tasks:
+    - name: restart service
+      service: name=network state=restarted
+
+
+
+
+   
+

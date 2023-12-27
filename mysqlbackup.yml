@@ -1,0 +1,15 @@
+---
+- hosts: 10.8.0.107
+  remote_user: root
+  gather_facts: false
+  vars:
+    - work_dir: /home/sqldump
+    - nginx_version: 1.15.1
+  tasks:
+    - name: register var
+      command: date +"%F_%T"
+      register: datetime
+    - name: fetch file
+      fetch:
+        src: /home/sqldump
+        dest: '/data1/r_{{datetime.stdout}}'

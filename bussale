@@ -1,0 +1,27 @@
+#!/bin/sh
+# chkconfig: 345 86 14
+# description: Starts and Stops BusSale
+JAVA_HOME=/home/nova/jdk1.6.0_27
+CLASSPATH=.:$JAVA_HOME/lib/dt.jar:$JAVA_HOME/lib/tools.jar
+export JAVA_HOME CLASSPATH
+
+case "$1" in
+ start)
+/home/play/play start /home/cty/BusSale
+ ;;
+ status)
+/home/play/play status /home/cty/BusSale
+        ;;
+ stop)
+/home/play/play stop /home/cty/BusSale
+ ;;
+ restart)
+/home/play/play stop /home/cty/BusSale
+/home/play/play start /home/cty/BusSale
+;;
+*)
+echo "Usage: BusSale {start|stop|restart|status}"
+exit 1
+esac
+exit 0
+

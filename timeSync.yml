@@ -1,0 +1,15 @@
+- hosts: al
+  tasks:
+  - name: install ntpdate
+    tags: install
+    yum: 
+      name: ntpdate
+      state: latest
+
+  - name: Time synchronization
+    tags: sync
+    command: ntpdate -u ntp.api.bz
+
+  - name: 将软件时间写入到硬件时间
+    tags: clock
+    command: hwclock --systohc

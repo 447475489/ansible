@@ -1,0 +1,21 @@
+---
+- hosts: 10.8.0.25
+  remote_user: root
+  gather_facts: no
+  tasks:
+    - name: "复制主机上的文件到目标服务器上"
+      copy:
+        src: "{{ item.src }}"
+        dest: "{{ item.dest }}"
+        owner: root
+        group: root
+        mode: 755
+      with_items:
+        - { src: "/home/bussale.conf", dest: "/etc/rc.d/init.d" }
+        - { src: "/home/bussync.conf", dest: "/etc/rc.d/init.d" }
+
+
+
+
+
+

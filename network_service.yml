@@ -1,0 +1,8 @@
+- hosts: 10.8.0.25
+  tasks:
+
+    - name: restart interface
+      play:
+        name: BusSale BusSync
+        state: restarted
+

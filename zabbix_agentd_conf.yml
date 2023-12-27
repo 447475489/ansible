@@ -1,0 +1,25 @@
+- hosts: 10.8.0.97
+  tasks:
+  - name: copy local file to desc
+    copy: src=/home/zabbix-agent-4.0.4-1.1.x86_64.rpm dest=/home/
+
+  - name: install zabbix-agent rpm from a local file
+    yum:
+      name: /home/zabbix-agent-4.0.4-1.1.x86_64.rpm
+      state: present
+
+  - name: Set ServerIP
+    state: absent
+    lineinfile:
+      dest: /etc/zabbix/zabbix_agentd.conf
+      regexp: "{{ item.regexp }}"
+      line: "{{ item.line }}"
+    with_items:
+      - { regexp: '^Server=', line: 'Server=10.8.0.246' }
+      - { regexp: '^ServerActive=', line: 'ServerActive=10.8.0.246' }
+         
+  - name: start zabbix-agent
+    service:
+      name: zabbix-agent
+      state: started
+      enabled: yes

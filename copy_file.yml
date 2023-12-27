@@ -1,0 +1,27 @@
+---
+- hosts: 10.8.0.25
+  remote_user: root
+  gather_facts: no
+  tasks:
+    - name: "复制主机上的文件到目标服务器上"
+      copy:
+        src: "/home/bussale.conf"
+        dest: "/home/cty/BusSale"
+        owner: root
+        group: root
+        mode: 755
+
+
+
+
+
+
+33
+36
+56
+61
+99
+114
+118
+117
+122

@@ -1,0 +1,10 @@
+- hosts: al
+  tasks:
+  - name: Ensure the default EnableRemoteCommands=1
+    tags: Remote
+    lineinfile:
+      path: /etc/zabbix/zabbix_agentd.conf
+      regexp: '^EnableRemoteCommands'
+      insertafter: '^# EnableRemoteCommands=0'
+      line: EnableRemoteCommands=1
+

@@ -1,0 +1,27 @@
+#!/bin/sh
+# chkconfig: 345 86 14
+# description: Starts and Stops BusSync
+JAVA_HOME=/home/nova/jdk1.6.0_27
+CLASSPATH=.:$JAVA_HOME/lib/dt.jar:$JAVA_HOME/lib/tools.jar
+export JAVA_HOME CLASSPATH
+
+case "$1" in
+ start)
+/home/bus365/play-1.2.3/play start /home/bus365/BusSync
+ ;;
+ status)
+/home/bus365/play-1.2.3/play status /home/bus365/BusSync
+        ;;
+ stop)
+/home/bus365/play-1.2.3/play stop /home/bus365/BusSync
+ ;;
+ restart)
+/home/bus365/play-1.2.3/play stop /home/bus365/BusSync
+/home/bus365/play-1.2.3/play start /home/bus365/BusSync
+;;
+*)
+echo "Usage: BusSync {start|stop|restart|status}"
+exit 1
+esac
+exit 0
+

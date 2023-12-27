@@ -1,0 +1,18 @@
+  ---
+- hosts: rinted
+  tasks:
+  - name: Sends the "src=/etc/sysconfig/network-scripts/ifcfg-eth0" of the target host to the native "/data/backup/"
+    when: ansible_distribution == 'CentOS' and ansible_distribution_major_version == "6"
+    fetch:
+      src: "{{ item.src }}"
+      dest: "{{ item.dest }}"
+    with_items:
+    - { src: ' rinetd-0.62-9.el6.nux.x86_64.rpm', dest: '/root/'}
+
+  - name: Sends the "src=/etc/sysconfig/network-scripts/ifcfg-enp1s0" of the target host to the native "/data/backup/"
+    when: ansible_distribution == 'CentOS' and ansible_distribution_major_version == "7"
+    fetch:
+      src: "{{ item.src }}"
+      dest: "{{ item.dest }}"
+    with_items:
+    - { src: ' rinetd-0.62-9.el7.nux.x86_64.rpm', dest: '/root/'}

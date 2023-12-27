@@ -1,0 +1,6 @@
+- hosts: al
+  tasks:
+
+  - name: ping al
+    command: 'ping'
+

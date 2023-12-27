@@ -1,0 +1,66 @@
+---
+- hosts: all
+  tasks:
+  # - name: Sends the "src=/home/cty/BusSale/conf/application.conf" of the target host to the native "/data/backup/"
+  #   fetch:
+  #     src: /home/cty/BusSale/conf/application.conf
+  #     dest: /data/backup/
+  # - name: Sends the "src=/home/cty/BusSync/conf/application.conf" of the target host to the native "/data/backup/"
+  #   fetch:
+  #     src: /home/cty/BusSync/conf/application.conf
+  #     dest: /data/backup/
+
+  - name: Sends the "src=/home/cty/BusSync/conf/application.conf" of the target host to the native "/data/backup/"
+    fetch:
+      src: "{{ item.src }}"
+      dest: "{{ item.dest }}"
+    with_items:
+    # /home/cty
+    - { src: '/home/cty/BusSale/conf/application.conf', dest: '/data/backup/'}
+    - { src: '/home/cty/BusSync/conf/application.conf', dest: '/data/backup/'} 
+    # /data/cty
+    - { src: '/data/cty/BusSale/conf/application.conf', dest: '/data/backup/'}
+    - { src: '/data/cty/BusSync/conf/application.conf', dest: '/data/backup/'}
+    # /data
+    - { src: '/data/BusSale/conf/application.conf', dest: '/data/backup/'}
+    - { src: '/data/BusSync/conf/application.conf', dest: '/data/backup/'}
+
+  # - name: Sends the "src=/etc/sysconfig/network-scripts/ifcfg-eth0" of the target host to the native "/data/backup/"
+  #   when: ansible_distribution == 'CentOS' and ansible_distribution_major_version == "6"
+  #   fetch:
+  #     src: /etc/sysconfig/network-scripts/ifcfg-eth0
+  #     dest: /data/backup/
+  # - name: Sends the "src=/etc/sysconfig/network-scripts/ifcfg-eth1" of the target host to the native "/data/backup/"
+  #   when: ansible_distribution == 'CentOS' and ansible_distribution_major_version == "6"
+  #   fetch:
+  #     src: /etc/sysconfig/network-scripts/ifcfg-eth1
+  #     dest: /data/backup/
+
+  - name: Sends the "src=/etc/sysconfig/network-scripts/ifcfg-eth0" of the target host to the native "/data/backup/"
+    when: ansible_distribution == 'CentOS' and ansible_distribution_major_version == "6"
+    fetch:
+      src: "{{ item.src }}"
+      dest: "{{ item.dest }}"
+    with_items:
+    - { src: '/etc/sysconfig/network-scripts/ifcfg-eth0', dest: '/data/backup/'}
+    - { src: '/etc/sysconfig/network-scripts/ifcfg-eth1', dest: '/data/backup/'} 
+
+  - name: Sends the "src=/etc/sysconfig/network-scripts/ifcfg-enp1s0" of the target host to the native "/data/backup/"
+    when: ansible_distribution == 'CentOS' and ansible_distribution_major_version == "7"
+    fetch:
+      src: "{{ item.src }}"
+      dest: "{{ item.dest }}"
+    with_items:
+    - { src: '/etc/sysconfig/network-scripts/ifcfg-enp1s0', dest: '/data/backup/'}
+    - { src: '/etc/sysconfig/network-scripts/ifcfg-enp2s0', dest: '/data/backup/'} 
+  # - name: Sends the "src=/etc/sysconfig/network-scripts/ifcfg-enp1s0" of the target host to the native "/data/backup/"
+  #   when: ansible_distribution == 'CentOS' and ansible_distribution_major_version == "7"
+  #   fetch:
+  #     src: /etc/sysconfig/network-scripts/ifcfg-enp1s0
+  #     dest: /data/backup/
+
+  # - name: Sends the "src=/etc/sysconfig/network-scripts/ifcfg-enp2s0" of the target host to the native "/data/backup/"
+  #   when: ansible_distribution == 'CentOS' and ansible_distribution_major_version == "7"
+  #   fetch:
+  #     src: /etc/sysconfig/network-scripts/ifcfg-enp2s0
+  #     dest: /data/backup/
